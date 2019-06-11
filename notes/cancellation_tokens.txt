@@ -1,0 +1,7 @@
+How many times did you refresh the page when wating for large content to be loaded. 
+If you are the same type of person as I am then you are doing this often.  
+But, have you ever thought about what happens under the hood when user refresh the page? 
+Today I will try to explain a little bit more about how we can optimize use of server resources with CancellationToken in such scenarios.
+
+-> Cancellations and time consuming requests.
+
