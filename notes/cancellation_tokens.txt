@@ -5,3 +5,12 @@ Today I will try to explain a little bit more about how we can optimize use of s
 
 -> Cancellations and time consuming requests.
 
+//new
+
+Cancellation Tokens in Asp.Net Core - small yet powerfull thing used for cancellations 
+
+In this post we'll try to learn how to use cancellationToken by example in ASP.NET Core.
+By using CancellationTokens we can stop execution of long running requests when user stops or refresh their request from browsers (or other clients). 
+
+I'm not going to dive into how async, await, Task, CancellationToken works under the hood but rather how to benefit from using this feature.
+We'll also take a look how we can inject CancellationToken into a MVC action method and catch cancelled requests.
