@@ -13,4 +13,37 @@ In this post we'll try to learn how to use cancellationToken by example in ASP.N
 By using CancellationTokens we can stop execution of long running requests when user stops or refresh their request from browsers (or other clients). 
 
 I'm not going to dive into how async, await, Task, CancellationToken works under the hood but rather how to benefit from using this feature.
-We'll also take a look how we can inject CancellationToken into a MVC action method and catch cancelled requests.
+
+catching Canecellation requests:
+- RequestAborted property of HttpContext
+
+//code
+if (HttpContext.RequestAborted.IsCancellationRequested)
+{
+    // can stop working now
+}
+
+RequestAborted is just a CancellationToken 
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext.requestaborted
+
+- pass CancellationToken as an action parameter
+
+//Code
+public async Task<ActionResult> LongRunningTask(CancellationToken cancellationToken)
+{
+    if (cancellationToken.IsCancellationRequested)
+    {
+        // stop!
+    }
+}
+
+As you can expect those 2 appraches gives us the same CancellationTokens, so if we want to check if those tokens are equal
+
+public async Task<ActionResult> LongRunningTask(CancellationToken cancellationToken)
+{
+    if(cancellationToken == HttpContext.RequestAborted)
+    {
+        // returns true !
+    }
+}
+
